@@ -6,15 +6,13 @@ const ForgotPassword = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
 
-    const API_BASE_URL = "https://forgot-password-backend-q5ty.onrender.com";
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage("");
         setError("");
 
         try {
-            const response = await fetch(`${API_BASE_URL}/forgot-password`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/forgot-password`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email }),

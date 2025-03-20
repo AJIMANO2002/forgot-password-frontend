@@ -9,6 +9,9 @@ const ResetPassword = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState("");
+    const API_BASE_URL = "https://forgot-password-backend-q5ty.onrender.com/api";
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +24,7 @@ const ResetPassword = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:8000/api/reset-password/${token}`, {
+            const response = await fetch(`${API_BASE_URL}/reset-password/${token}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

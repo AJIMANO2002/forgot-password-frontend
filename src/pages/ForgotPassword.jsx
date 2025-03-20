@@ -10,21 +10,26 @@ const ForgotPassword = () => {
         e.preventDefault();
         setMessage("");
         setError("");
-
+    
         try {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/forgot-password`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include", // 🔥 Fix CORS issue
                 body: JSON.stringify({ email }),
             });
-
+    
             const data = await response.json();
-            if (response.ok) setMessage(data.message);
-            else setError(data.message);
+            if (response.ok) {
+                setMessage(data.message);
+            } else {
+                setError(data.message);
+            }
         } catch (err) {
             setError("Network error!");
         }
     };
+    
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
